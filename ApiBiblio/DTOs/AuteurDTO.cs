@@ -1,5 +1,4 @@
 ﻿using ApiBiblio.Models;
-using Swashbuckle.AspNetCore.Annotations;
 
 namespace ApiBiblio.DTOs
 {
