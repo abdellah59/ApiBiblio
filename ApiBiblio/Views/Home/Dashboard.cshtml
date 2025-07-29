@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Tableau de bord";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
@@ -103,10 +104,10 @@
             </div>
             <div class="card-body">
                 <div class="d-grid gap-2">
-                    <a href="/Livre/Create" class="btn btn-primary">Ajouter un livre</a>
-                    <a href="/Membre/Create" class="btn btn-success">Ajouter un membre</a>
-                    <a href="/Emprunt/Create" class="btn btn-warning">Nouvel emprunt</a>
-                    <a href="/Emprunt/Index" class="btn btn-info">Gérer les retours</a>
+                    <a asp-controller="Livres" asp-action="Create" class="btn btn-primary">Ajouter un livre</a>
+                    <a asp-controller="Membres" asp-action="Create" class="btn btn-success">Ajouter un membre</a>
+                    <a asp-controller="Emprunts" asp-action="Create" class="btn btn-warning">Nouvel emprunt</a>
+                    <a asp-controller="Emprunts" asp-action="Index" class="btn btn-info">Gérer les retours</a>
                 </div>
             </div>
         </div>

@@ -18,6 +18,8 @@ namespace ApiBiblio.DTOs
         public int Id { get; set; }
         public List<int> IdLivres { get; set; } = new List<int>();
         public DateTime DateRetour { get; set; }
+        public int IdMembre { get; set; }
+        public int IdEmploye { get; set; }
     }
 }
 

@@ -1,16 +1,22 @@
-﻿using ApiBiblio.Models;
-
-namespace ApiBiblio.DTOs
+﻿namespace ApiBiblio.DTOs
 {
     public class CategorieDTO
     {
-        public int Id { get; set; }
+        public class CreateCategorieDto
+        {
+            public required string NomCategorie { get; set; }
+        }
 
-        public required string NomCategorie { get; set; }
+        public class CategorieResponseDto
+        {
+            public int Id { get; set; }
+            public string NomCategorie { get; set; }
+        }
 
-        public CategorieDTO() { }
-
-        public CategorieDTO(Categorie categorie) =>
-            (Id, NomCategorie) = (categorie.Id, categorie.NomCategorie);
+        public class UpdateCategorieDto
+        {
+            public string? NomCategorie { get; set; }
+        }
     }
 }
+  

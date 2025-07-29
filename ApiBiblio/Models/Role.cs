@@ -4,7 +4,6 @@
     {
         public int Id { get; set; }
         public required string NomRole { get; set; } // Ex: Admin ou Bibliothecaire
-        public virtual List<Emprunt> Emprunts { get; set; } = new();
-
+        public virtual ICollection<Employe> Employes { get; set; } = new List<Employe>();
     }
 }

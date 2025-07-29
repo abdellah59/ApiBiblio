@@ -6,11 +6,10 @@
         public required string NomMembre{ get; set; }
         public required string PrenomMembre { get; set; }
         public required string MdpMembre { get; set; }
-        public required string AdressePostale {  get; set; }
+        public string? AdressePostale {  get; set; }
         public  required string AdresseMail { get; set; }
         public required string Telephone {  get; set; }
-        public List<string>? HistoriqueMembre { get; set; } = new();
-        public virtual List<Emprunt> Emprunts { get; set; } = new();
-
+        public string? HistoriqueMembre { get; set; }
+        public virtual ICollection<Emprunt> Emprunts { get; set; } = new List<Emprunt>();
     }
 }

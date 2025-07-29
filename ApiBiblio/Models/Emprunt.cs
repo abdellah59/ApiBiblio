@@ -18,6 +18,6 @@ namespace ApiBiblio.Models
 
         [ForeignKey("IdEmploye")]
         public virtual Employe Employe { get; set; }
-        public virtual List<EmpruntLivre> EmpruntLivres { get; set; } = new();
+        public virtual ICollection<EmpruntLivre> EmpruntLivres { get; set; } = new List<EmpruntLivre>();
     }
 }

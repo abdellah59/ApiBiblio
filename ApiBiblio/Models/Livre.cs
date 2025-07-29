@@ -23,11 +23,8 @@ namespace ApiBiblio.Models
         public virtual Auteur Auteur { get; set; }
 
         [ForeignKey("IdGenre")]
+
         public virtual Genre Genre { get; set; }
-
-        [ForeignKey("IdEmprunt")]
-        public virtual Emprunt Emprunt { get; set; }
-        public virtual List<EmpruntLivre> EmpruntLivres { get; set; } = new();
-
+        public virtual ICollection<EmpruntLivre> EmpruntLivres { get; set; } = new List<EmpruntLivre>();
     }
 }

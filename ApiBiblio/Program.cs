@@ -34,6 +34,28 @@ namespace ApiBiblio
                                     Email = "test.email@gmail.com"
                                 }
                             });
+
+                            
+
+                            c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                            {
+                                {
+                                    new OpenApiSecurityScheme
+                                    {
+                                        Reference = new OpenApiReference
+                                        {
+                                            Type = ReferenceType.SecurityScheme,
+                                            Id = "Bearer"
+                                        },
+                                        Scheme = "oauth2",
+                                        Name = "Bearer",
+                                        In = ParameterLocation.Header,
+
+                                    },
+                                    new List<string>()
+                                }
+                            });
+
                         });
 
             // Configuration de l'authentification JWT
@@ -65,6 +87,12 @@ namespace ApiBiblio
             builder.Services.AddScoped<IEmpruntService, EmpruntService>();
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IEmployeService, EmployeService>();
+            builder.Services.AddScoped<IAuteurService, AuteurService>();
+            builder.Services.AddScoped<ICategorieService, CategorieService>();
+            builder.Services.AddScoped<IGenreService, GenreService>();
+
+            // Ajoutez les logs
+            builder.Services.AddLogging();
 
             builder.Services.AddControllersWithViews();
 
@@ -86,6 +114,13 @@ namespace ApiBiblio
                 }
             }
 
+            app.UseSwagger();
+                        app.UseSwaggerUI(c =>
+                        {
+                            c.SwaggerEndpoint("/swagger/v1/swagger.json", "BiblioSimplon V1");
+                            c.RoutePrefix = "swagger";
+                        });
+
             // Middleware
             if (!app.Environment.IsDevelopment())
             {
@@ -93,20 +128,16 @@ namespace ApiBiblio
                 app.UseHsts();
             }
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "BiblioSimplon V1");
-                c.RoutePrefix = "swagger";
-            });
+            
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
-            
 
+            // Route MVC
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

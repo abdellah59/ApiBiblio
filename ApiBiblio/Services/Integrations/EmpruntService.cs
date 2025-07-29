@@ -79,9 +79,9 @@ namespace ApiBiblio.Services.Integrations
             // Créer l'emprunt
             var emprunt = new Emprunt
             {
-                DateEmprunt = DateTime.Now,
+                DateEmprunt = DateTime.UtcNow,          
                 Statut = "En cours",
-                IdMembre = createEmpruntDTO.Id,
+                IdMembre = createEmpruntDTO.IdMembre,
                 IdEmploye = employeId
             };
 
@@ -119,7 +119,7 @@ namespace ApiBiblio.Services.Integrations
 
             // Mettre à jour le statut de l'emprunt
             emprunt.Statut = "Terminé";
-            emprunt.DateRetour = DateTime.Now;
+            emprunt.DateRetour = DateTime.UtcNow;
 
             // Remettre les livres comme disponibles
             foreach (var empruntLivre in emprunt.EmpruntLivres)

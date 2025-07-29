@@ -1,15 +1,21 @@
-﻿using ApiBiblio.Models;
-
-namespace ApiBiblio.DTOs
+﻿namespace ApiBiblio.DTOs
 {
     public class GenreDTO
     {
-        public int Id { get; set; }
-        public required string NomGenre { get; set; }
+        public class CreateGenreDto
+        {
+            public required string NomGenre { get; set; }
+        }
 
-        public GenreDTO() { }
+        public class GenreResponseDto
+        {
+            public int Id { get; set; }
+            public string NomGenre { get; set; }
+        }
 
-        public GenreDTO(Genre genre) =>
-            (Id, NomGenre) = (genre.Id, genre.NomGenre);
+        public class UpdateGenreDto
+        {
+            public string? NomGenre { get; set; }
+        }
     }
 }

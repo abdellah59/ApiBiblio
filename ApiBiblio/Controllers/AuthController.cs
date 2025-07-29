@@ -22,16 +22,21 @@ namespace BibliothequeApp.Controllers
         {
             try
             {
+                // Ajoutez des logs pour debugging
+                Console.WriteLine($"Tentative de connexion pour: {loginDto.Email}");
+
                 var result = await _authService.LoginAsync(loginDto);
                 return Ok(result);
             }
             catch (UnauthorizedAccessException ex)
             {
-                return Unauthorized(new { message = ex.Message });
+                Console.WriteLine($"Erreur d'autorisation: {ex.Message}");
+                return Unauthorized(new { message = ex.Message, details = "Credentials invalides" });
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });
+                Console.WriteLine($"Erreur générale: {ex.Message}");
+                return BadRequest(new { message = ex.Message, stackTrace = ex.StackTrace });
             }
         }
 
